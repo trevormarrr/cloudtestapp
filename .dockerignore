@@ -1,0 +1,23 @@
+# solution-level junk
+.git
+.gitignore
+.vscode
+.vs
+*.user
+*.suo
+
+# node/JS
+node_modules
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# build outputs
+**/bin/
+**/obj/
+**/Debug/
+**/Release/
+
+# OS cruft
+.DS_Store
+Thumbs.db
