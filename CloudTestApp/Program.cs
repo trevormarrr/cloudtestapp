@@ -2,62 +2,107 @@
 using CloudTestApp.Data;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Serilog;
+// If LogActionFilter is in a namespace, make sure to include it, e.g.:
+using CloudTestApp.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
-var config = builder.Configuration;
 
-// Razor Pages
-builder.Services.AddRazorPages();
+// ---- Serilog to stdout (platforms collect stdout) ----
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .Enrich.WithThreadId()
+    .Enrich.WithEnvironmentUserName()
+    .WriteTo.Console(outputTemplate:
+        "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] ({SourceContext}) {Message:lj} {Properties:j}{NewLine}{Exception}")
+    .CreateLogger();
 
-// ---- Heroku: bind to provided PORT before Build ----
+builder.Host.UseSerilog();
+
+// Make environment variables available via Configuration
+builder.Configuration.AddEnvironmentVariables();
+
+// Bind to provided PORT (Heroku-style) if present
 var port = Environment.GetEnvironmentVariable("PORT");
-if (!string.IsNullOrEmpty(port))
+if (!string.IsNullOrWhiteSpace(port))
 {
     builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 }
 
-// ---- Resolve MySQL connection string in this order ----
-// 1) ConnectionStrings:Default (Heroku: set with ConnectionStrings__Default)
-// 2) MYSQL_CONNECTION (optional env you might set)
-// 3) Parse JAWSDB_URL (Heroku add-on default)
-string? connStr =
-    config.GetConnectionString("Default") ??
-    Environment.GetEnvironmentVariable("MYSQL_CONNECTION");
+// ---- DB wiring: Dev (in-memory) vs Non-Dev (MySQL) ----
+var useInMemory =
+    builder.Environment.IsDevelopment() &&
+    builder.Configuration.GetValue<bool>("UseInMemoryDb");
 
-if (string.IsNullOrWhiteSpace(connStr))
+if (useInMemory)
 {
-    var jawsUrl = Environment.GetEnvironmentVariable("JAWSDB_URL");
-    if (!string.IsNullOrWhiteSpace(jawsUrl))
+    // Development: no MySQL required
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseInMemoryDatabase("Dev"));
+}
+else
+{
+    // ---- Resolve MySQL connection string in this order ----
+    // 1) MYSQL_CONNECTION
+    // 2) ConnectionStrings:Default
+    // 3) JAWSDB_URL (Heroku add-on)
+    string? connStr =
+        Environment.GetEnvironmentVariable("MYSQL_CONNECTION")
+        ?? builder.Configuration.GetConnectionString("Default");
+
+    if (string.IsNullOrWhiteSpace(connStr))
     {
-        connStr = BuildMySqlConnectionStringFromUrl(jawsUrl);
+        var jawsUrl = Environment.GetEnvironmentVariable("JAWSDB_URL");
+        if (!string.IsNullOrWhiteSpace(jawsUrl))
+        {
+            connStr = BuildMySqlConnectionStringFromUrl(jawsUrl);
+        }
     }
-}
 
-if (string.IsNullOrWhiteSpace(connStr))
-{
-    throw new InvalidOperationException(
-        "No MySQL connection string found. Set ConnectionStrings:Default, MYSQL_CONNECTION, or JAWSDB_URL."
-    );
-}
-
-// ---- Use explicit server version to avoid AutoDetect at startup ----
-// Most JawsDB free/low tiers are MySQL 5.7. If yours is 8.0, change to (8,0,0).
-var serverVersion = new MySqlServerVersion(new Version(5, 7, 0));
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseMySql(connStr!, serverVersion, mySql =>
+    if (string.IsNullOrWhiteSpace(connStr))
     {
-        mySql.EnableRetryOnFailure(
-            maxRetryCount: 5,
-            maxRetryDelay: TimeSpan.FromSeconds(10),
-            errorNumbersToAdd: null
+        throw new InvalidOperationException(
+            "No MySQL connection string found. Set MYSQL_CONNECTION, ConnectionStrings:Default, or JAWSDB_URL."
         );
-    });
+    }
+
+    // Auto-detect MySQL server version (ok in cloud; can hardcode if desired)
+    var serverVersion = ServerVersion.AutoDetect(connStr);
+
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseMySql(connStr, serverVersion, mySql =>
+            mySql.EnableRetryOnFailure(maxRetryCount: 5,
+                                       maxRetryDelay: TimeSpan.FromSeconds(10),
+                                       errorNumbersToAdd: null)));
+}
+
+// ---- MVC/Razor + global action filter ----
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add<LogActionFilter>(); // ensure using/import for this type
 });
 
 var app = builder.Build();
+
+// ---- Global exception guard ----
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception ex)
+    {
+        var logger = context.RequestServices.GetRequiredService<ILoggerFactory>()
+            .CreateLogger("GlobalException");
+        logger.LogError(ex, "Unhandled exception");
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync("Internal Server Error");
+    }
+});
 
 if (!app.Environment.IsDevelopment())
 {
@@ -65,27 +110,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// ---- Apply migrations on startup (don’t take the app down if it fails) ----
-using (var scope = app.Services.CreateScope())
-{
-    try
-    {
-        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-        db.Database.Migrate();
-    }
-    catch (Exception ex)
-    {
-        // Log and continue so the dyno doesn’t crash on first boot while you debug DB access.
-        app.Logger.LogError(ex, "Database migration failed at startup.");
-        // If you prefer hard-fail, rethrow here.
-        // throw;
-    }
-}
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
 app.MapRazorPages();
+app.MapControllers(); // safe even if you have none yet
+
 app.Run();
 
 // --------- helpers ---------
@@ -103,7 +134,8 @@ static string BuildMySqlConnectionStringFromUrl(string url)
         Database = uri.LocalPath.Trim('/'),
         UserID = user,
         Password = pass,
-        SslMode = MySqlSslMode.Preferred,
+        // Cloud DBs expect TLS; Azure MySQL requires SSL
+        SslMode = MySqlSslMode.Required,
         AllowPublicKeyRetrieval = true
     };
 

@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\CloudTestApp.csproj": {}
+    "/Users/trevormarr/Documents/School/CST-323/CloudTest/CloudTestApp/CloudTestApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\CloudTestApp.csproj": {
+    "/Users/trevormarr/Documents/School/CST-323/CloudTest/CloudTestApp/CloudTestApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\CloudTestApp.csproj",
+        "projectUniqueName": "/Users/trevormarr/Documents/School/CST-323/CloudTest/CloudTestApp/CloudTestApp.csproj",
         "projectName": "CloudTestApp",
-        "projectPath": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\CloudTestApp.csproj",
-        "packagesPath": "C:\\Users\\trevormarr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\obj\\",
+        "projectPath": "/Users/trevormarr/Documents/School/CST-323/CloudTest/CloudTestApp/CloudTestApp.csproj",
+        "packagesPath": "/Users/trevormarr/.nuget/packages/",
+        "outputPath": "/Users/trevormarr/Documents/School/CST-323/CloudTest/CloudTestApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\trevormarr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/trevormarr/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -56,6 +53,10 @@
               "target": "Package",
               "version": "[8.0.13, )"
             },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[8.0.13, )"
+            },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[8.0.13, )"
@@ -77,6 +78,18 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[8.0.3, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Serilog.Enrichers.Environment": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Serilog.Enrichers.Thread": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             }
           },
           "imports": [
@@ -98,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/trevormarr/.dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

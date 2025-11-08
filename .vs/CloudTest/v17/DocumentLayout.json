@@ -1,32 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{43638965-30E4-407C-8E43-E007C30F6E16}|Solution Items{43638965-30E4-407C-8E43-E007C30F6E16}|C:\\Users\\trevormarr\\source\\repos\\CloudTest\\Dockerfile.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{43638965-30E4-407C-8E43-E007C30F6E16}|Solution Items{43638965-30E4-407C-8E43-E007C30F6E16}|solutionrelative:Dockerfile.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|c:\\users\\trevormarr\\source\\repos\\cloudtest\\cloudtestapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|solutionrelative:cloudtestapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|c:\\users\\trevormarr\\source\\repos\\cloudtest\\cloudtestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|solutionrelative:cloudtestapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|c:\\users\\trevormarr\\source\\repos\\cloudtest\\cloudtestapp\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|solutionrelative:cloudtestapp\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|c:\\users\\trevormarr\\source\\repos\\cloudtest\\cloudtestapp\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|solutionrelative:cloudtestapp\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|c:\\users\\trevormarr\\source\\repos\\cloudtest\\cloudtestapp\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A22A23F9-D4EC-4E0D-8383-ACACADB97E8C}|CloudTestApp\\CloudTestApp.csproj|solutionrelative:cloudtestapp\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Mac\\Home\\Documents\\School\\CST-323\\CloudTest\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -34,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -115,81 +90,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Dockerfile.txt",
-              "DocumentMoniker": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\Dockerfile.txt",
-              "RelativeDocumentMoniker": "Dockerfile.txt",
-              "ToolTip": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\Dockerfile.txt",
-              "RelativeToolTip": "Dockerfile.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-10-10T23:44:42.839Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Pages\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "CloudTestApp\\Pages\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Pages\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "CloudTestApp\\Pages\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-27T00:30:30.35Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Program.cs",
-              "RelativeDocumentMoniker": "CloudTestApp\\Program.cs",
-              "ToolTip": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Program.cs",
-              "RelativeToolTip": "CloudTestApp\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T18:54:49.521Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\appsettings.json",
-              "RelativeDocumentMoniker": "CloudTestApp\\appsettings.json",
-              "ToolTip": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\appsettings.json",
-              "RelativeToolTip": "CloudTestApp\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAClAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-26T18:53:59.718Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "CloudTestApp\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "CloudTestApp\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T18:53:41.807Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Contact.cs",
-              "DocumentMoniker": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Models\\Contact.cs",
-              "RelativeDocumentMoniker": "CloudTestApp\\Models\\Contact.cs",
-              "ToolTip": "C:\\Users\\trevormarr\\source\\repos\\CloudTest\\CloudTestApp\\Models\\Contact.cs",
-              "RelativeToolTip": "CloudTestApp\\Models\\Contact.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T18:52:54.84Z"
             }
           ]
         }
